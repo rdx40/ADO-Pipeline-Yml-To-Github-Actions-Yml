@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Api\\AzurePipelinesToGitHubActionsConverter.Api.csproj": {}
+    "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Api\\AzurePipelinesToGitHubActionsConverter.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Api\\AzurePipelinesToGitHubActionsConverter.Api.csproj": {
+    "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Api\\AzurePipelinesToGitHubActionsConverter.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Api\\AzurePipelinesToGitHubActionsConverter.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Api\\AzurePipelinesToGitHubActionsConverter.Api.csproj",
         "projectName": "AzurePipelinesToGitHubActionsConverter.Api",
-        "projectPath": "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Api\\AzurePipelinesToGitHubActionsConverter.Api.csproj",
+        "projectPath": "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Api\\AzurePipelinesToGitHubActionsConverter.Api.csproj",
         "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Api\\obj\\",
+        "outputPath": "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\NuGet.Config",
+          "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\NuGet.Config",
           "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +27,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Core\\AzurePipelinesToGitHubActionsConverter.Core.csproj": {
-                "projectPath": "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Core\\AzurePipelinesToGitHubActionsConverter.Core.csproj"
+              "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Core\\AzurePipelinesToGitHubActionsConverter.Core.csproj": {
+                "projectPath": "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Core\\AzurePipelinesToGitHubActionsConverter.Core.csproj"
               }
             }
           }
@@ -80,17 +80,17 @@
         }
       }
     },
-    "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Core\\AzurePipelinesToGitHubActionsConverter.Core.csproj": {
+    "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Core\\AzurePipelinesToGitHubActionsConverter.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Core\\AzurePipelinesToGitHubActionsConverter.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Core\\AzurePipelinesToGitHubActionsConverter.Core.csproj",
         "projectName": "AzurePipelinesToGitHubActionsConverter.Core",
-        "projectPath": "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Core\\AzurePipelinesToGitHubActionsConverter.Core.csproj",
+        "projectPath": "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Core\\AzurePipelinesToGitHubActionsConverter.Core.csproj",
         "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Core\\obj\\",
+        "outputPath": "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\NuGet.Config",
+          "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\NuGet.Config",
           "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [

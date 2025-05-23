@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AzurePipelinesToGitHubActionsConverter.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77e2eaee7709484a021b660372961e21f7ee9694")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3cd8926fb6cb3e051ad971b5f7e524ea9fcb1b68")]
 [assembly: System.Reflection.AssemblyProductAttribute("AzurePipelinesToGitHubActionsConverter.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AzurePipelinesToGitHubActionsConverter.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

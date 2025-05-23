@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "frAL5S5N7d0=",
+  "dgSpecHash": "Y2+IR2S1GrU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ivan\\Desktop\\api-for-ado2gh-yaml-conversion\\AzurePipelinesToGitHubActionsConverter\\src\\AzurePipelinesToGitHubActionsConverter.Api\\AzurePipelinesToGitHubActionsConverter.Api.csproj",
+  "projectFilePath": "C:\\Users\\Ivan\\Documents\\ADO-Pipeline-Yml-To-Github-Actions-Yml\\src\\AzurePipelinesToGitHubActionsConverter.Api\\AzurePipelinesToGitHubActionsConverter.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ivan\\.nuget\\packages\\githubactionsdotnet\\1.3.33\\githubactionsdotnet.1.3.33.nupkg.sha512",
     "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.16\\microsoft.aspnetcore.openapi.8.0.16.nupkg.sha512",
