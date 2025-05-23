@@ -1,0 +1,122 @@
+name: 'CI/ CD'
+
+on: 
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{matrix.os}}
+    outputs: # https://stackoverflow.com/questions/59175332/using-output-from-a-previous-job-in-a-new-one-in-a-github-action
+      Version: ${{ steps.gitversion.outputs.SemVer }}
+      CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}  
+    steps:
+
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 #fetch-depth is needed for GitVersion
+        
+    #Install and calculate the new version with GitVersion  
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v3.2.1
+      with:
+        versionSpec: 5.x
+
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v3.2.1
+      id: gitversion # step id used as reference for output values
+
+    - name: Display GitVersion outputs
+      run: |
+        echo "Version: ${{ steps.gitversion.outputs.SemVer }}"
+        echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: .NET test
+      run: dotnet test src/AzurePipelinesToGitHubActionsConverter.Tests/AzurePipelinesToGitHubActionsConverter.Tests.csproj -c Release --nologo -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=lcov -l:"trx;LogFileName=${{ github.workspace }}/TestOutput.xml"
+    - name: Output results
+      #if: runner.OS == 'Linux'
+      shell: pwsh
+      run: |
+        [xml]$result = Get-Content -Path ${{ github.workspace }}/TestOutput.xml
+        #$result.TestRun.ResultSummary.Counters.passed
+        #$result.TestRun.ResultSummary.Counters.failed
+        echo "Test results" >> $env:GITHUB_STEP_SUMMARY
+        echo "" >> $env:GITHUB_STEP_SUMMARY # this is a blank line
+        echo "- Total: $($result.TestRun.ResultSummary.Counters.total)" >> $env:GITHUB_STEP_SUMMARY
+        echo "- Passed ✅: $($result.TestRun.ResultSummary.Counters.passed)" >> $env:GITHUB_STEP_SUMMARY
+        echo "- Failed ❌: $($result.TestRun.ResultSummary.Counters.failed)" >> $env:GITHUB_STEP_SUMMARY
+    - name: Publish coverage report to coveralls.io
+      uses: coverallsapp/github-action@master
+      if: runner.OS == 'Linux' && 0 == 1 #Only push the Linux coverage
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: src/AzurePipelinesToGitHubActionsConverter.Tests/TestResults/coverage.info
+
+    #Pack the code into a NuGet package
+    - name: .NET pack
+      run: dotnet pack src/AzurePipelinesToGitHubActionsConverter.Core/AzurePipelinesToGitHubActionsConverter.Core.csproj -c Release --nologo --include-symbols -p:Version='${{ steps.gitversion.outputs.SemVer }}'
+
+    - name: Upload nuget package back to GitHub
+      uses: actions/upload-artifact@v4
+      if: runner.OS == 'Linux' #Only pack the Linux nuget package
+      with:
+        name: nugetPackage
+        path: src/AzurePipelinesToGitHubActionsConverter.Core/bin/Release      
+
+
+  sonarCloud:
+    name: Run SonarCloud analysis
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' 
+    steps:
+      - name: Run Sonarcloud test
+        uses: samsmithnz/SamsDotNetSonarCloudAction@v2
+        with:
+          projects: 'src/AzurePipelinesToGitHubActionsConverter.Core/AzurePipelinesToGitHubActionsConverter.Core.csproj,src/AzurePipelinesToGitHubActionsConverter.Tests/AzurePipelinesToGitHubActionsConverter.Tests.csproj'
+          dotnet-version: '8.0.x'
+          sonarcloud-organization: samsmithnz-github
+          sonarcloud-project: samsmithnz_AzurePipelinesToGitHubActionsConverter
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
+          
+  NuGetPush:
+    runs-on: ubuntu-latest
+    needs: 
+    - build
+    - sonarCloud
+    if: github.ref == 'refs/heads/main'      
+    steps:
+    - name: Display GitVersion outputs
+      run: |
+        echo "Version: ${{ needs.build.outputs.Version }}" 
+        echo "CommitsSinceVersionSource: ${{ needs.build.outputs.CommitsSinceVersionSource }}" 
+    - name: Download nuget package artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: nugetPackage 
+        path: nugetPackage 
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 6.0.x   
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      if: needs.build.outputs.CommitsSinceVersionSource > 0 #Only create a release if there has been a commit/version change
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: "v${{ needs.build.outputs.Version }}"
+        release_name: "v${{ needs.build.outputs.Version }}" 
+    - name: Publish nuget package to nuget.org
+      if: needs.build.outputs.CommitsSinceVersionSource > 0 #Only publish a NuGet package if there has been a commit/version change
+      run: dotnet nuget push nugetPackage\*.nupkg --api-key "${{ secrets.GHPackagesToken }}" --source "https://api.nuget.org/v3/index.json"
+      shell: pwsh
