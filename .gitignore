@@ -1,56 +1,48 @@
-# .NET Core
+# Build artifacts
 bin/
 obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# User-specific files
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
-*.swp
-*.vs/
-.vscode/
 
 # Rider
 .idea/
 
-# Logs
-*.log
-logs/
+# VS Code
+.vscode/
 
-# Build results
-[Dd]ebug/
-[Rr]elease/
-x64/
-x86/
-*.exe
-*.dll
-*.pdb
-*.cache
-*.config
-*.db
+# OS files
+.DS_Store
+Thumbs.db
 
 # NuGet
 *.nupkg
 *.snupkg
-.nuget/
-packages/
+*.nuspec
 project.lock.json
-project.fragment.lock.json
-
-# Other
-*.tmp
-*.bak
-*.old
-*.orig
+project.assets.json
+project.nuget.cache
+*.nuget.props
+*.nuget.targets
 
 # Test results
 TestResults/
-coverage/
 
-# OS-specific
-.DS_Store
-Thumbs.db
+# Publish outputs
+publish/
+*.db
 
-# Secrets (optional)
-appsettings.*.json
-!appsettings.json
+# dotCover
+.idea/.dotCover
+
+# Ignore secrets
+appsettings.Development.json
 

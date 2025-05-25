@@ -13,13 +13,13 @@ github.com/samsmithnz
 ```bash
 git clone https://github.com/your-username/ADO-Pipeline-Yml-To-Github-Actions-Yml.git
 cd ADO-Pipeline-Yml-To-Github-Actions-Yml
+cd src/AzurePipelinesToGitHubActionsConverter
 
 dotnet restore
 
 dotnet build
 
-dotnet run --project src/AzurePipelinesToGitHubActionsConverter.Api
-
+dotnet run 
 
 http://localhost:5000/swagger
 dotnet test

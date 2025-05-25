@@ -1,5 +1,0 @@
-is_global = true
-build_property.RootNamespace = AzurePipelinesToGitHubActionsConverter.Core
-build_property.ProjectDir = C:\Users\Ivan\Desktop\api-for-ado2gh-yaml-conversion\AzurePipelinesToGitHubActionsConverter\src\AzurePipelinesToGitHubActionsConverter.Core\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
