@@ -15,32 +15,27 @@ public class ConvertController : ControllerBase
     }
 
     [HttpPost("pipeline")]
-    public IActionResult ConvertPipeline([FromBody] PipelineConversionRequest request)
+    public IActionResult ConvertPipeline()
     {
-        if (string.IsNullOrWhiteSpace(request?.AzurePipelineYaml))
-            return BadRequest("Azure pipeline YAML must be provided.");
-
-        var result = _converter.ConvertAzurePipelineToGitHubAction(request.AzurePipelineYaml, addWorkFlowDispatch: true);
-
-        var response = new PipelineConversionResponse
+        try
         {
-            OriginalYaml = result.pipelinesYaml,
-            ConvertedYaml = result.actionsYaml,
-            Comments = result.comments ?? new List<string>()
-        };
+            // Read raw request body as string
+            using var reader = new StreamReader(Request.Body);
+            var yamlContent = reader.ReadToEndAsync().GetAwaiter().GetResult();
+            
+            if (string.IsNullOrWhiteSpace(yamlContent))
+                return BadRequest("YAML content is empty");
 
-        return Ok(response);
+            var result = _converter.ConvertAzurePipelineToGitHubAction(
+                yamlContent, 
+                addWorkFlowDispatch: true
+            );
+
+            return Content(result.actionsYaml, "application/x-yaml");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Conversion failed: {ex.Message}");
+        }
     }
-}
-
-public class PipelineConversionRequest
-{
-    public string AzurePipelineYaml { get; set; } = null!;
-}
-
-public class PipelineConversionResponse
-{
-    public string OriginalYaml { get; set; } = null!;
-    public string ConvertedYaml { get; set; } = null!;
-    public List<string> Comments { get; set; } = new();
 }

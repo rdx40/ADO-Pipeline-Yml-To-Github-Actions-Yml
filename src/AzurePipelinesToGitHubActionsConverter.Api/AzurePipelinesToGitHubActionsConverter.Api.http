@@ -1,6 +1,24 @@
 @AzurePipelinesToGitHubActionsConverter.Api_HostAddress = http://localhost:5271
 
-GET {{AzurePipelinesToGitHubActionsConverter.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+### Convert Azure Pipeline to GitHub Actions (YAML)
+POST {{AzurePipelinesToGitHubActionsConverter.Api_HostAddress}}/api/convert/pipeline
+Content-Type: application/x-yaml
+Accept: application/x-yaml
 
-###
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+### Old JSON endpoint (for reference)
+# POST {{AzurePipelinesToGitHubActionsConverter.Api_HostAddress}}/api/convert/pipeline
+# Content-Type: application/json
+# 
+# {
+#   "azurePipelineYaml": "trigger:\n- main\n\npool:\n  vmImage: 'ubuntu-latest'\n\nsteps:\n- script: echo Hello, world!\n  displayName: 'Run a one-line script'"
+# }

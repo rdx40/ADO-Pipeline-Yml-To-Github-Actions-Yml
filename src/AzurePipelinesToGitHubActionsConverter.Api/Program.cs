@@ -1,6 +1,15 @@
+using Microsoft.AspNetCore.Mvc;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
+using AzurePipelinesToGitHubActionsConverter.Api;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+// Add YAML formatters (using our custom extension)
+builder.Services.AddControllers()
+    .AddYamlFormatters(); // Simple call without options
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -13,7 +22,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.MapControllers();
-
 app.Run();
